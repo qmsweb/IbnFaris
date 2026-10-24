@@ -500,14 +500,14 @@
 
   if (launchDateEl) {
     try {
-      var dateFormat = new Intl.DateTimeFormat("ar", {
+      var dateFormat = new Intl.DateTimeFormat("ar-u-nu-latn", {
         dateStyle: "long",
         timeStyle: "short",
         timeZone: "Asia/Riyadh"
       });
       launchDateEl.textContent = "الإطلاق العام · " + dateFormat.format(LAUNCH_DATE);
     } catch (error) {
-      launchDateEl.textContent = "الإطلاق العام · ١ ديسمبر ٢٠٢٦، ٨:٠٠ مساءً بتوقيت الرياض";
+      launchDateEl.textContent = "الإطلاق العام · 1 ديسمبر 2026، 8:00 مساءً بتوقيت الرياض";
     }
   }
 
