@@ -611,11 +611,19 @@
 
       fetch(endpoint, {
         method: "POST",
-        mode: "no-cors",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(payload)
       })
-        .then(function () {
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+          }
+          return response.json();
+        })
+        .then(function (result) {
+          if (!result || result.ok !== true) {
+            throw new Error("rejected");
+          }
           showEmailSuccess(email);
         })
         .catch(function () {
