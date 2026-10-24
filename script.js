@@ -523,6 +523,9 @@
   var waitlistSuccess = document.getElementById("waitlistSuccess");
   var successEmail = document.getElementById("successEmail");
   var resetWaitlist = document.getElementById("resetWaitlist");
+  var waitlistBtn = waitlistForm ? waitlistForm.querySelector('button[type="submit"]') : null;
+  var waitlistBtnLabel = waitlistBtn ? waitlistBtn.textContent : "";
+  var isSubmitting = false;
 
   function clearEmailError() {
     if (waitlistForm) {
@@ -533,40 +536,94 @@
     }
   }
 
+  function showEmailError(message) {
+    if (waitlistForm) {
+      waitlistForm.classList.add("has-error");
+    }
+    if (formMsg) {
+      formMsg.hidden = false;
+      formMsg.textContent = message;
+    }
+  }
+
+  function setSubmitting(state) {
+    isSubmitting = state;
+    if (waitlistBtn) {
+      waitlistBtn.disabled = state;
+      waitlistBtn.textContent = state ? "جارٍ التسجيل…" : waitlistBtnLabel;
+    }
+    if (waitlistForm) {
+      waitlistForm.setAttribute("aria-busy", state ? "true" : "false");
+    }
+  }
+
+  function showEmailSuccess(email) {
+    if (successEmail) {
+      successEmail.textContent = email;
+    }
+    waitlistForm.hidden = true;
+    if (formMsg) {
+      formMsg.hidden = true;
+    }
+    if (formNote) {
+      formNote.hidden = true;
+    }
+    if (waitlistSuccess) {
+      waitlistSuccess.hidden = false;
+      waitlistSuccess.scrollIntoView({
+        behavior: prefersReducedMotion() ? "auto" : "smooth",
+        block: "nearest"
+      });
+    }
+  }
+
   if (waitlistForm && emailInput) {
     waitlistForm.addEventListener("submit", function (event) {
       event.preventDefault();
+      if (isSubmitting) {
+        return;
+      }
+
       var email = emailInput.value.trim();
       var isValid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
 
       if (!isValid) {
-        waitlistForm.classList.add("has-error");
-        if (formMsg) {
-          formMsg.textContent = "أدخل بريدًا إلكترونيًا صحيحًا، مثل name@example.com";
-        }
+        showEmailError("أدخل بريدًا إلكترونيًا صحيحًا، مثل name@example.com");
         emailInput.focus();
         return;
       }
 
-      clearEmailError();
+      var endpoint = waitlistForm.getAttribute("action") || "";
+      if (!/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(endpoint)) {
+        showEmailError("تعذّر إكمال التسجيل حاليًا. حاول مرة أخرى بعد قليل.");
+        return;
+      }
 
-      if (successEmail) {
-        successEmail.textContent = email;
-      }
-      waitlistForm.hidden = true;
-      if (formMsg) {
-        formMsg.hidden = true;
-      }
-      if (formNote) {
-        formNote.hidden = true;
-      }
-      if (waitlistSuccess) {
-        waitlistSuccess.hidden = false;
-        waitlistSuccess.scrollIntoView({
-          behavior: prefersReducedMotion() ? "auto" : "smooth",
-          block: "nearest"
+      clearEmailError();
+      setSubmitting(true);
+
+      var payload = {
+        email: email,
+        source: "landing-waitlist",
+        page: window.location.href,
+        submittedAt: new Date().toISOString()
+      };
+
+      fetch(endpoint, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      })
+        .then(function () {
+          showEmailSuccess(email);
+        })
+        .catch(function () {
+          showEmailError("تعذّر إرسال بريدك. تحقق من اتصالك وحاول مرة أخرى.");
+        })
+        .then(function () {
+          setSubmitting(false);
         });
-      }
     });
 
     emailInput.addEventListener("input", clearEmailError);

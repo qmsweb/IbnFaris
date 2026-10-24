@@ -90,7 +90,7 @@
       <div class="wrap">
         <div class="hero-inner">
           <p class="hero-eyebrow">
-            <span class="badge-new">جديد</span>
+            <span class="badge-new">قريبًا</span>
             <span>إطلاق خدمة الذكاء الاصطناعي من روافد</span>
           </p>
 
@@ -108,10 +108,6 @@
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#demo">
-              جرّب ابن فارس الآن
-              <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
-            </a>
             <a class="btn btn-ghost" href="#features">اكتشف المزايا</a>
           </div>
 
@@ -306,9 +302,10 @@
           </div>
           <p class="launch-date" id="launchDate">الإطلاق العام · 1 ديسمبر 2026</p>
 
-          <form class="waitlist" id="waitlistForm" novalidate>
+          <form class="waitlist" id="waitlistForm" action="https://script.google.com/macros/s/REPLACE_DEPLOYMENT_ID/exec" method="POST" novalidate>
             <label class="sr-only" for="email">بريدك الإلكتروني</label>
             <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="بريدك الإلكتروني" required>
+            <input type="hidden" name="source" value="landing-waitlist">
             <button class="btn btn-primary" type="submit">احجز مقعدي</button>
           </form>
           <p class="form-msg" id="formMsg" role="alert" aria-live="polite"></p>

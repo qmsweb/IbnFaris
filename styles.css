@@ -1393,6 +1393,11 @@ img {
   flex: none;
 }
 
+.waitlist .btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
 .form-msg {
   min-height: 18px;
   margin-top: 8px;
