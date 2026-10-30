@@ -413,10 +413,18 @@ img {
   border-bottom: 1px solid var(--hairline);
   color: var(--color-graphite);
   font-size: 15px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .mobile-nav a:not(.btn):hover {
   color: var(--color-ink);
+}
+
+.mobile-nav a:focus-visible {
+  outline: none;
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .mobile-cta {
@@ -432,9 +440,6 @@ img {
   scroll-margin-top: 92px;
 }
 
-#demo {
-  scroll-margin-top: 96px;
-}
 
 .hero-inner {
   display: flex;
