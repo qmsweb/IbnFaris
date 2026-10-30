@@ -1,25 +1,45 @@
 var SHEET_NAME = "Waitlist";
 var HEADERS = ["Timestamp", "Email", "Source", "Page"];
 var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+var MAX_EMAIL_LENGTH = 254;
+var MIN_ELAPSED_MS = 1200;
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
   lock.waitLock(30000);
   try {
     var data = readRequest(e);
+
+    if (String(data.company || "").trim() !== "") {
+      return respond(e, { ok: true });
+    }
+
+    var elapsed = Number(data.elapsedMs);
+    if (isFinite(elapsed) && elapsed >= 0 && elapsed < MIN_ELAPSED_MS) {
+      return respond(e, { ok: true });
+    }
+
     var email = String(data.email || "").trim().toLowerCase();
-    if (!EMAIL_RE.test(email)) {
+    if (email.length > MAX_EMAIL_LENGTH || !EMAIL_RE.test(email)) {
       return respond(e, { ok: false, error: "invalid_email" });
     }
+
+    var cache = CacheService.getScriptCache();
+    var cacheKey = "wl:" + email;
+    if (cache.get(cacheKey)) {
+      return respond(e, { ok: true });
+    }
+
     var sheet = getSheet();
     if (!hasEmail(sheet, email)) {
       sheet.appendRow([
         new Date(),
         email,
-        String(data.source || "website"),
-        String(data.page || "")
+        String(data.source || "website").slice(0, 120),
+        String(data.page || "").slice(0, 500)
       ]);
     }
+    cache.put(cacheKey, "1", 600);
     return respond(e, { ok: true });
   } catch (err) {
     return respond(e, { ok: false, error: "server_error" });

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
@@ -8,23 +8,37 @@
   <title>ابن فارس — الذكاء الاصطناعي من روافد</title>
   <meta name="description" content="ابن فارس، مساعد الذكاء الاصطناعي من روافد: يفهم العربية وسياقها، ويكتب ويلخّص ويحلّل بأسلوبك. انضم إلى الوصول المبكر عند الإطلاق.">
   <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ibnfaris.com/">
 
   <meta property="og:locale" content="ar_SA">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="ابن فارس —  عربيٌّ في فهمه، عالميٌّ في قدرته">
+  <meta property="og:site_name" content="ابن فارس">
+  <meta property="og:url" content="https://ibnfaris.com/">
+  <meta property="og:title" content="ابن فارس — عربيٌّ في فهمه، عالميٌّ في قدرته">
   <meta property="og:description" content="خدمة الذكاء الاصطناعي من روافد. يفهم لغتك وسياقك ويكتب معك — من أول كلمة. انضم إلى قائمة الوصول المبكر قبل الإطلاق.">
-  <meta property="og:image" content="icons/ibnfaris-512.png">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://ibnfaris.com/icons/ibnfaris-512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="شعار ابن فارس">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ابن فارس — الذكاء الاصطناعي من روافد">
   <meta name="twitter:description" content="ذكاءٌ اصطناعيٌّ بلسانٍ عربيٍّ مبين. جرّب المعاينة، وانضم إلى الوصول المبكر.">
-  <meta name="twitter:image" content="icons/ibnfaris-512.png">
+  <meta name="twitter:image" content="https://ibnfaris.com/icons/ibnfaris-512.png">
+  <meta name="twitter:image:alt" content="شعار ابن فارس">
 
   <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64.png">
   <link rel="apple-touch-icon" href="icons/ibnfaris-192.png">
   <link rel="preload" href="fonts/thmanyahsans-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/thmanyahsans-Medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    document.documentElement.classList.add("js");
+    window.setTimeout(function () {
+      if (!document.documentElement.classList.contains("js-ready")) {
+        document.documentElement.classList.remove("js");
+      }
+    }, 2500);
+  </script>
 </head>
 <body id="top">
 
@@ -49,7 +63,7 @@
     <div class="wrap header-inner">
       <a class="brand" href="#top" aria-label="ابن فارس من روافد — العودة إلى الأعلى">
         <span class="brand-mark-wrap">
-          <img class="brand-mark" src="icons/ibnfaris-mark.png" alt="" width="397" height="506">
+          <img class="brand-mark" src="icons/ibnfaris-mark-172.png" alt="" width="172" height="219">
         </span>
         <span class="brand-text">
           <span class="brand-name">ابن فارس</span>
@@ -59,7 +73,7 @@
 
       <nav class="desktop-nav" aria-label="التنقل الرئيسي">
         <a href="#features">المزايا</a>
-        <a href="#arabic">جرّبه</a>
+        <a href="#demo">جرّبه</a>
         <a href="#how">كيف يعمل</a>
         <a href="#faq">الأسئلة</a>
       </nav>
@@ -76,7 +90,7 @@
     <nav class="mobile-nav" id="mobileNav" aria-label="قائمة الجوال" hidden>
       <div class="wrap mobile-nav-inner">
         <a href="#features">المزايا</a>
-        <a href="#arabic">جرّبه</a>
+        <a href="#demo">جرّبه</a>
         <a href="#how">كيف يعمل</a>
         <a href="#faq">الأسئلة</a>
         <a class="btn btn-primary mobile-cta" href="#waitlist">احجز وصولك المبكر</a>
@@ -96,7 +110,7 @@
 
           <h1 id="hero-title">
             <span class="hero-lockup">
-              <img class="hero-mark" src="icons/ibnfaris-mark.png" alt="" width="397" height="506">
+              <img class="hero-mark" src="icons/ibnfaris-mark-172.png" alt="" width="172" height="219">
               <span class="hero-brand">ابن فارس</span>
             </span>
             <span class="hero-tagline"> عربيٌّ في فهمه.. عالميٌّ في قدرته</span>
@@ -107,7 +121,65 @@
           </p>
 
           <div class="hero-actions">
+            <a class="btn btn-primary" href="#waitlist">
+              احجز وصولك المبكر
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
             <a class="btn btn-ghost" href="#features">اكتشف المزايا</a>
+          </div>
+
+          <ul class="trust" aria-label="لماذا ابن فارس">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> عربيٌّ أولًا</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> خصوصيةٌ أولًا</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> بلا إعدادات</li>
+          </ul>
+
+          <div class="ask-card" id="demo">
+            <div class="ask-head">
+              <div class="ask-id">
+                <img class="mini-mark" src="icons/ibnfaris-mark-172.png" alt="" width="172" height="219">
+                <span>ابن فارس</span>
+                <span class="badge-demo">معاينة</span>
+              </div>
+              <span class="ask-hint">جرّب الآن</span>
+            </div>
+
+            <form class="ask-form" id="askForm" autocomplete="off">
+              <div class="ask-input-row">
+                <svg class="icon ask-spark" aria-hidden="true"><use href="#i-sparkle"></use></svg>
+                <label class="sr-only" for="askInput">اسأل ابن فارس</label>
+                <input id="askInput" name="askInput" type="text" placeholder="اكتب سؤالك بالعربية، أو اختر مثالًا أدناه." maxlength="160" required>
+                <button class="send-btn" type="submit" aria-label="إرسال السؤال">
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+                </button>
+              </div>
+
+              <div class="ask-controls">
+                <div class="prompt-chips" role="group" aria-label="أمثلة جاهزة">
+                  <button class="chip" type="button" data-prompt="ما الفرق بين الاستعارة والتشبيه؟" data-answer="metaphor">الفرق البلاغي</button>
+                  <button class="chip" type="button" data-prompt="لخّص لي فكرة الذكاء الاصطناعي التوليدي." data-answer="summary">تلخيص</button>
+                  <button class="chip" type="button" data-prompt="أعد صياغة: قمنا بتطوير النظام لكي يكون أسرع وأسهل." data-answer="rewrite">إعادة صياغة</button>
+                  <button class="chip" type="button" data-prompt="اكتب لي فقرة عن جمال اللغة العربية." data-answer="beauty">كتابة</button>
+                </div>
+                <span class="ask-kbd"><kbd>Enter</kbd> للإرسال</span>
+              </div>
+            </form>
+
+            <div class="answer" id="answer" hidden>
+              <div class="answer-head">
+                <span class="answer-who">
+                  <img class="mini-mark" src="icons/ibnfaris-mark-172.png" alt="" width="172" height="219">
+                  ابن فارس
+                </span>
+                <span class="answer-tag">معاينة توضيحية</span>
+              </div>
+              <p class="answer-body" id="answerBody"></p>
+              <div class="answer-foot">
+                <span>نموذج توضيحي · ليس إجابة نهائية</span>
+                <button class="text-btn" id="askReset" type="button">مسح</button>
+              </div>
+            </div>
+            <p class="sr-only" id="demoLive" aria-live="polite"></p>
           </div>
 
           <div class="suggestion-grid" aria-label="أفكار للبدء">
@@ -219,7 +291,7 @@
           <div class="showcase-panel reveal" id="showcasePanel" role="tabpanel" aria-labelledby="tabExplain" tabindex="0">
             <div class="panel-head">
               <span class="panel-id">
-                <img class="mini-mark" src="icons/ibnfaris-mark.png" alt="" width="397" height="506">
+                <img class="mini-mark" src="icons/ibnfaris-mark-172.png" alt="" width="172" height="219">
                 ابن فارس
               </span>
               <button class="copy-btn" id="copyBtn" type="button">
@@ -278,7 +350,7 @@
 
     <section class="quote-band" aria-label="شعار ابن فارس">
       <div class="wrap reveal">
-        <img class="quote-mark" src="icons/ibnfaris-mark.png" alt="" width="397" height="506" loading="lazy">
+        <img class="quote-mark" src="icons/ibnfaris-mark-172.png" alt="" width="172" height="219" loading="lazy">
         <p>«من مقاييس اللغة، إلى مقاييس الفهم.»</p>
         <span class="quote-src">ابن فارس — خدمة الذكاء الاصطناعي من روافد</span>
       </div>
@@ -303,8 +375,12 @@
 
           <form class="waitlist" id="waitlistForm" action="https://script.google.com/macros/s/AKfycbzhfeiHD6c4w4-WnqxBrqnaNJIZaLK9g3Ys2606-uyd1mQnNXXmr2i-r2yC25UPgboNfw/exec" method="POST" novalidate>
             <label class="sr-only" for="email">بريدك الإلكتروني</label>
-            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="بريدك الإلكتروني" required>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="بريدك الإلكتروني" dir="ltr" maxlength="254" required>
             <input type="hidden" name="source" value="landing-waitlist">
+            <div class="hp-field" aria-hidden="true">
+              <label for="company">الشركة</label>
+              <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+            </div>
             <button class="btn btn-primary" type="submit">احجز مقعدي</button>
           </form>
           <p class="form-msg" id="formMsg" role="alert" aria-live="polite"></p>
@@ -312,7 +388,7 @@
 
           <div class="waitlist-success" id="waitlistSuccess" aria-live="polite" hidden>
             <span class="success-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>
-            <h3>أنت على القائمة.</h3>
+            <h3 id="successTitle" tabindex="-1">أنت على القائمة.</h3>
             <p>سنجهّز مقعدك، ونرسل الدعوة إلى <span id="successEmail" dir="ltr"></span> عند فتح الأبواب.</p>
             <button class="text-btn" id="resetWaitlist" type="button">تسجيل بريد آخر</button>
           </div>
@@ -401,7 +477,7 @@
         <div class="footer-brand">
           <a class="brand" href="#top" aria-label="ابن فارس من روافد">
             <span class="brand-mark-wrap">
-              <img class="brand-mark" src="icons/ibnfaris-mark.png" alt="" width="397" height="506" loading="lazy">
+              <img class="brand-mark" src="icons/ibnfaris-mark-172.png" alt="" width="172" height="219" loading="lazy">
             </span>
             <span class="brand-text">
               <span class="brand-name">ابن فارس</span>
@@ -413,7 +489,7 @@
 
         <nav class="footer-nav" aria-label="روابط التذييل">
           <a href="#features">المزايا</a>
-          <a href="#arabic">جرّبه</a>
+          <a href="#demo">جرّبه</a>
           <a href="#how">كيف يعمل</a>
           <a href="#faq">الأسئلة</a>
           <a href="#waitlist">الوصول المبكر</a>
@@ -441,6 +517,8 @@
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
       "inLanguage": "ar",
+      "url": "https://ibnfaris.com/",
+      "image": "https://ibnfaris.com/icons/ibnfaris-512.png",
       "provider": {
         "@type": "Organization",
         "name": "روافد"

@@ -39,6 +39,10 @@
       mobileNav.hidden = false;
       menuBtn.setAttribute("aria-expanded", "true");
       menuBtn.setAttribute("aria-label", "إغلاق القائمة");
+      var firstLink = mobileNav.querySelector("a");
+      if (firstLink) {
+        firstLink.focus();
+      }
     };
 
     menuBtn.addEventListener("click", function () {
@@ -573,11 +577,14 @@
   var formMsg = document.getElementById("formMsg");
   var formNote = document.querySelector(".form-note");
   var waitlistSuccess = document.getElementById("waitlistSuccess");
+  var successTitle = document.getElementById("successTitle");
   var successEmail = document.getElementById("successEmail");
   var resetWaitlist = document.getElementById("resetWaitlist");
+  var honeypot = document.getElementById("company");
   var waitlistBtn = waitlistForm ? waitlistForm.querySelector('button[type="submit"]') : null;
   var waitlistBtnLabel = waitlistBtn ? waitlistBtn.textContent : "";
   var isSubmitting = false;
+  var formLoadedAt = Date.now();
 
   function clearEmailError() {
     if (waitlistForm) {
@@ -629,6 +636,9 @@
         block: "nearest"
       });
     }
+    if (successTitle) {
+      successTitle.focus({ preventScroll: true });
+    }
   }
 
   if (waitlistForm && emailInput) {
@@ -660,7 +670,9 @@
         email: email,
         source: "landing-waitlist",
         page: window.location.href,
-        submittedAt: new Date().toISOString()
+        submittedAt: new Date().toISOString(),
+        elapsedMs: Date.now() - formLoadedAt,
+        company: honeypot ? honeypot.value : ""
       };
 
       fetch(endpoint, {
@@ -742,4 +754,6 @@
       }
     });
   });
+
+  document.documentElement.classList.add("js-ready");
 })();
