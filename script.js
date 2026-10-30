@@ -369,6 +369,18 @@
     if (panelOutput) {
       typeText(panelOutput, sample.output, 8);
     }
+
+    if (showcasePanel && !prefersReducedMotion()) {
+      showcasePanel.classList.remove("is-updating");
+      void showcasePanel.offsetWidth;
+      showcasePanel.classList.add("is-updating");
+    }
+  }
+
+  if (showcasePanel) {
+    showcasePanel.addEventListener("animationend", function () {
+      showcasePanel.classList.remove("is-updating");
+    });
   }
 
   if (tabs.length) {
@@ -421,6 +433,7 @@
   }
 
   var copyLabelTimer = null;
+  var copyStateTimer = null;
 
   if (copyBtn) {
     copyBtn.addEventListener("click", function () {
@@ -428,6 +441,15 @@
 
       var showCopied = function (ok) {
         updateCopyLabel(ok ? "تم النسخ" : "تعذّر النسخ");
+        copyBtn.classList.remove("is-copied");
+        if (ok) {
+          void copyBtn.offsetWidth;
+          copyBtn.classList.add("is-copied");
+        }
+        window.clearTimeout(copyStateTimer);
+        copyStateTimer = window.setTimeout(function () {
+          copyBtn.classList.remove("is-copied");
+        }, 2000);
         window.clearTimeout(copyLabelTimer);
         copyLabelTimer = window.setTimeout(function () {
           updateCopyLabel("نسخ");
@@ -456,10 +478,43 @@
   var minutesEl = document.getElementById("minutes");
   var secondsEl = document.getElementById("seconds");
   var countdownTimer = null;
+  var countdownPrimed = false;
+  var tickingNums = [daysEl, hoursEl, minutesEl];
 
   function pad(value) {
     return String(value).padStart(2, "0");
   }
+
+  function setCountNum(element, value) {
+    if (!element) {
+      return;
+    }
+
+    var next = pad(value);
+
+    if (element.textContent === next) {
+      return;
+    }
+
+    element.textContent = next;
+
+    if (!countdownPrimed || prefersReducedMotion()) {
+      return;
+    }
+
+    element.classList.remove("is-ticking");
+    void element.offsetWidth;
+    element.classList.add("is-ticking");
+  }
+
+  tickingNums.forEach(function (element) {
+    if (!element) {
+      return;
+    }
+    element.addEventListener("animationend", function () {
+      element.classList.remove("is-ticking");
+    });
+  });
 
   function updateCountdown() {
     if (!countdown || !launchDateEl) {
@@ -484,18 +539,15 @@
     var minutes = Math.floor((totalSeconds % 3600) / 60);
     var seconds = totalSeconds % 60;
 
-    if (daysEl) {
-      daysEl.textContent = pad(days);
-    }
-    if (hoursEl) {
-      hoursEl.textContent = pad(hours);
-    }
-    if (minutesEl) {
-      minutesEl.textContent = pad(minutes);
-    }
+    setCountNum(daysEl, days);
+    setCountNum(hoursEl, hours);
+    setCountNum(minutesEl, minutes);
+
     if (secondsEl) {
       secondsEl.textContent = pad(seconds);
     }
+
+    countdownPrimed = true;
   }
 
   if (launchDateEl) {
@@ -538,6 +590,8 @@
 
   function showEmailError(message) {
     if (waitlistForm) {
+      waitlistForm.classList.remove("has-error");
+      void waitlistForm.offsetWidth;
       waitlistForm.classList.add("has-error");
     }
     if (formMsg) {

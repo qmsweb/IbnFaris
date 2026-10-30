@@ -1976,6 +1976,279 @@ img {
   }
 }
 
+/* Motion — ambient refinements */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes nav-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tick {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  35% {
+    opacity: 0.25;
+    transform: translateY(-3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  60% {
+    transform: translateX(3px);
+  }
+  85% {
+    transform: translateX(-1px);
+  }
+}
+
+@keyframes mark-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Hero mark settles into place */
+
+.js .hero-mark {
+  animation: mark-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+/* Headings uncover as their block enters */
+
+.js .reveal h2 {
+  clip-path: inset(0 0 118% 0);
+  transform: translateY(6px);
+  transition: clip-path 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.05s,
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
+}
+
+.js .reveal.is-visible h2 {
+  clip-path: inset(-25% -5% -25% -5%);
+  transform: translateY(0);
+}
+
+/* Eyebrow rule draws in with the heading */
+
+.js .reveal .eyebrow::before,
+.js .reveal .eyebrow::after {
+  transform: scaleX(0);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
+}
+
+.js .reveal .eyebrow::before {
+  transform-origin: right;
+}
+
+.js .reveal .eyebrow::after {
+  transform-origin: left;
+}
+
+.js .reveal.is-visible .eyebrow::before,
+.js .reveal.is-visible .eyebrow::after {
+  transform: scaleX(1);
+}
+
+/* Checklist items settle one after another */
+
+.js .reveal .mini-list li {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js .reveal.is-visible .mini-list li {
+  opacity: 1;
+  transform: none;
+}
+
+.js .reveal .mini-list li:nth-child(2) {
+  transition-delay: 0.08s;
+}
+
+.js .reveal .mini-list li:nth-child(3) {
+  transition-delay: 0.16s;
+}
+
+/* Quiet hover responses */
+
+.brand-mark,
+.feature-icon,
+.suggest-icon,
+.back-top .icon {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.feature-icon .icon {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.brand:hover .brand-mark {
+  transform: scale(1.04);
+}
+
+.feature-card:hover .feature-icon {
+  transform: translateY(-1px);
+}
+
+.feature-card:hover .feature-icon .icon {
+  transform: rotate(-6deg);
+}
+
+.suggestion-card:hover .suggest-icon {
+  transform: translateY(-1px);
+}
+
+.step-num {
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.step:hover .step-num {
+  color: var(--color-ink);
+}
+
+.back-top:hover .icon {
+  transform: translateY(-2px);
+}
+
+.menu-btn .icon {
+  transition: transform 0.25s ease;
+}
+
+.menu-btn[aria-expanded="true"] .icon-close {
+  transform: rotate(90deg);
+}
+
+/* Tactile press */
+
+.btn:active,
+.send-btn:active,
+.chip:active,
+.tab:active,
+.copy-btn:active,
+.menu-btn:active {
+  transform: scale(0.97);
+}
+
+.suggestion-card:active,
+.feature-card:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* Mobile menu drops in */
+
+.js .mobile-nav:not([hidden]) {
+  animation: nav-drop 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Countdown ticks when a value changes */
+
+.count-num.is-ticking {
+  animation: tick 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Showcase panel refreshes on tab change */
+
+.js .showcase-panel.is-updating .panel-input,
+.js .showcase-panel.is-updating .panel-foot {
+  animation: fade-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.js .showcase-panel.is-updating .panel-block-output {
+  animation: fade-in 0.35s ease both;
+}
+
+/* Copy feedback */
+
+.copy-btn.is-copied {
+  color: var(--color-ink);
+}
+
+.copy-btn.is-copied .icon {
+  animation: pop-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Success + error feedback */
+
+.js .waitlist-success:not([hidden]) .success-icon {
+  animation: pop-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+.waitlist.has-error {
+  animation: nudge 0.4s ease;
+}
+
+/* FAQ answer text settles when opened */
+
+.js .faq-item.is-open .faq-a p {
+  animation: fade-in 0.4s ease 0.08s both;
+}
+
+/* Marquee pauses on keyboard focus too */
+
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -2000,6 +2273,31 @@ img {
   .js .suggestion-grid {
     opacity: 1;
     transform: none;
+  }
+
+  .js .reveal h2,
+  .js .reveal .mini-list li {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+
+  .js .reveal .eyebrow::before,
+  .js .reveal .eyebrow::after {
+    transform: none;
+  }
+
+  .js .hero-mark,
+  .js .mobile-nav:not([hidden]),
+  .js .faq-item.is-open .faq-a p,
+  .js .waitlist-success:not([hidden]) .success-icon,
+  .js .showcase-panel.is-updating .panel-input,
+  .js .showcase-panel.is-updating .panel-block-output,
+  .js .showcase-panel.is-updating .panel-foot,
+  .count-num.is-ticking,
+  .copy-btn.is-copied .icon,
+  .waitlist.has-error {
+    animation: none;
   }
 
   .marquee-track {
