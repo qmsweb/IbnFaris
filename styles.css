@@ -1646,6 +1646,12 @@ img {
   font-size: 10.5px;
 }
 
+.footer-logo {
+  display: block;
+  height: 26px;
+  width: auto;
+}
+
 /* Motion */
 
 @keyframes rise-in {
