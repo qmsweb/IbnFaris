@@ -1594,6 +1594,10 @@ img {
   line-height: 1.85;
 }
 
+.footer-brand .footer-tagline {
+  font-feature-settings: "ss01";
+}
+
 .footer-nav {
   display: flex;
   flex-wrap: wrap;
@@ -1648,7 +1652,7 @@ img {
 
 .footer-logo {
   display: block;
-  height: 26px;
+  height: 18px;
   width: auto;
 }
 
